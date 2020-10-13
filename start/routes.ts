@@ -25,7 +25,6 @@ Route.get('/', async () => {
   return { hello: 'world2' }
 })
 Route.post('/login', 'AuthController.login')
-Route.post('/register', 'UserController.register')
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
   
@@ -33,3 +32,5 @@ Route.get('health', async ({ response }) => {
     ? response.ok(report)
     : response.badRequest(report)
 })
+
+Route.resource('user', 'UsersController')

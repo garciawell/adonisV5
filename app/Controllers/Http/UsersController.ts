@@ -1,11 +1,38 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
+import User from "App/Models/User"
 export default class UsersController {
-    public async ({request, response}: HttpContextContract) {
-        const email = request.input("email")
-        const password = request.input("password")
+    public async index ({ response}: HttpContextContract) {
+        const user  = await User.all()
+        response.status(200).json(user)
+    }
+       
+    
+    public async store ({ response, request}: HttpContextContract) {
+        const user  = await User.create(request.only(['name', 'email', 'password']))
+        response.status(200).json(user)
 
-        
+    }    
+    public async update ({params, request, response}: HttpContextContract) {
+        const user = await User.find(params.id)
+
+        if(user) {
+            user.merge(request.only(['name', 'email', 'password']))
+            user.save()
+        }
+        response.status(200).json(user)
+
+    }   
+    
+    public async delete ({params, response}: HttpContextContract) {
+        const user = await User.find(params.id)
+
+        if(user) {
+           user.delete()
+        }
+        response.status(200).json({
+            msg: `The User ${params.id} was deleted`
+        })
+
     }
     
 }

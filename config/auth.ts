@@ -91,7 +91,7 @@ const authConfig: AuthConfig = {
         | field and `remember_me_token` column.
         |
         */
-        usersTable: "user" ,
+        usersTable: "users" ,
       },
     },
   },
