@@ -9,6 +9,6 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: lucid
-      POSTGRES_USER: lucid
-      POSTGRES_DB: lucid
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
