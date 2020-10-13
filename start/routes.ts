@@ -24,7 +24,8 @@ import HealthCheck from '@ioc:Adonis/Core/HealthCheck'
 Route.get('/', async () => {
   return { hello: 'world2' }
 })
-Route.post('/login', 'UsersController.login')
+Route.post('/login', 'AuthController.login')
+Route.post('/register', 'UserController.register')
 Route.get('health', async ({ response }) => {
   const report = await HealthCheck.getReport()
   
